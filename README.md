@@ -1,7 +1,7 @@
 # ghostbot
 A Discord bot (using node.js) that tracks guesses for MLR swings, and gives points based on accuracy. Licensed under MIT.
 # Scoring
-Default scoring is based on a system used by the fake Chicago White Sox.
+Default scoring is based on a system used by the fake Chicago White Sox. This can be easily changed by modifying the source code.
 
 ![](https://cdn.discordapp.com/attachments/615371719301005361/862041200788897792/unknown.png)
 # Setup
