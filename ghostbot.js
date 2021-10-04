@@ -116,7 +116,7 @@ client.on("messageCreate", message => {
             let currentGuesses = readMasterJson()["CurrentGuesses"]; 
 
             let desc = "```\nUser                                        | Guess \n-----------------------------------------------------\n";
-            for (const entry of currentGuesses) {
+            for (const entry of Object.keys(currentGuesses)) {
                 let user = client.users.cache.get(entry);
                 desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
             }
