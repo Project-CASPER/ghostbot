@@ -112,6 +112,11 @@ client.on("messageCreate", message => {
             break;
         }
         case "endab": {
+            let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
+            if (!message.member.roles.cache.has(captainRole.id)) {
+                message.reply("Sorry friend! You do not have the Captains role and cannot end the at-bat.");
+                break;
+            }
             let endNumber = parseInt(args[0]);
             if (isNaN(endNumber)) {
                 message.reply("Number not found. Please specify a number after the command.");
