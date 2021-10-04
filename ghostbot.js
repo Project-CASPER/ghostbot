@@ -36,6 +36,7 @@ function calculateScoring(diff) {
 }
 
 client.on("ready", () => {
+    client.user.setActivity("your guesses!", {type: "WATCHING"});
     console.log(`Logged in as\n${client.user.tag}\n${client.user.id}`);
 });
 
@@ -109,6 +110,23 @@ client.on("messageCreate", message => {
             else {
                 message.reply("Number out of range.");
             }
+            break;
+        }
+        case "guesses": {
+            let currentGuesses = readMasterJson()["CurrentGuesses"]; 
+
+            let desc = "```\nUser                                        | Guess \n-----------------------------------------------------\n";
+            for (const entry of currentGuesses) {
+                let user = client.users.cache.get(entry);
+                desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
+            }
+            desc += "```";
+            
+            let embed = new MessageEmbed()
+                .setColor("#000000")
+                .setTitle("At-bat Guesses")
+                .setDescription(desc);
+            message.channel.send({ embeds: [embed] });
             break;
         }
         case "endab": {
