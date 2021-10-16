@@ -3,6 +3,7 @@
 const { Client, MessageEmbed } = require('discord.js');
 const fs = require("fs");
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"] });
+const nota = "325356320473612290";
 
 function readMasterJson() {
     return JSON.parse(fs.readFileSync("ghostbot.json"));
@@ -54,7 +55,7 @@ client.on("messageCreate", message => {
         case "reset":
         case "resetsession": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
-            if (message.member.roles.cache.has(captainRole.id)) {
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id) || message.author.id === nota) {
                 let masterJson = readMasterJson();
                 masterJson["Scoreboard"] = {};
                 fs.writeFileSync("ghostbot.json", JSON.stringify(masterJson, null, 4));
@@ -69,7 +70,7 @@ client.on("messageCreate", message => {
         case "abandonab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
             let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
-            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id)) {
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id) || message.author.id === nota) {
                 let masterJson = readMasterJson();
                 masterJson["CurrentGuesses"] = {};
                 fs.writeFileSync("ghostbot.json", JSON.stringify(masterJson, null, 4));
@@ -83,7 +84,7 @@ client.on("messageCreate", message => {
         case "newab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
             let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
-            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id)) {
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id) || message.author.id === nota) {
                 let currentGuesses = readMasterJson()["CurrentGuesses"];
                 if (Object.keys(currentGuesses).length != 0) {
                     message.reply("An at bat is already taking place! Use `.currentab` to view the current at-bat and `.endab (number)` or `.abandonab` to end it.");
@@ -139,7 +140,7 @@ client.on("messageCreate", message => {
         case "endab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
             let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
-            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id)) {
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole.id) || message.author.id === nota) {
                 message.reply("Sorry friend! You do not have the Captains role and cannot end the at-bat.");
                 break;
             }
@@ -247,7 +248,7 @@ client.on("messageCreate", message => {
         }
         case "debug":
         case "spiteverythingout":
-            if (message.author.id != 325356320473612290n) return;
+            if (message.author.id != nota) return;
             let test = JSON.parse(fs.readFileSync("ghostbot.json"));
             message.channel.send(JSON.stringify(test, null, 4));
             break;
