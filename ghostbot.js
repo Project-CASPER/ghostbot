@@ -120,7 +120,12 @@ client.on("messageCreate", message => {
             let desc = "```\nUser                                        | Guess \n-----------------------------------------------------\n";
             for (const entry in currentGuesses) {
                 let user = client.users.cache.get(entry);
-                desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
+                try {
+                    desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
+                } catch (error) {
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})| ${currentGuesses[entry]}\n`;
+                    else throw error;
+                }
             }
             desc += "```";
             
@@ -158,7 +163,7 @@ client.on("messageCreate", message => {
                     try {
                         desc += `${user.tag}${" ".repeat(34-user.tag.length)}| ${diff} (${pointsScored})\n`;
                     } catch (error) {
-                        if (error instanceof TypeError) desc += `USER NOT FOUND (${key})${" ".repeat(34)}| ${diff} (${pointsScored})\n`;
+                        if (error instanceof TypeError) desc += `USER NOT FOUND (${key})| ${diff} (${pointsScored})\n`;
                         else throw error;
                     }
                 }
@@ -193,7 +198,12 @@ client.on("messageCreate", message => {
             let desc = "```\nUser                                        | Score \n-----------------------------------------------------\n";
             for (const entry of sortableLeaderboard) {
                 let user = client.users.cache.get(entry[0]);
-                desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
+                try {
+                    desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
+                } catch (error) {
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})| ${entry[1]}\n`;
+                    else throw error;
+                }
             }
             desc += "```";
             
@@ -219,7 +229,12 @@ client.on("messageCreate", message => {
             let desc = "```\nUser                                        | Score \n-----------------------------------------------------\n";
             for (const entry of sortableLeaderboard) {
                 let user = client.users.cache.get(entry[0]);
-                desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
+                try {
+                    desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
+                } catch (error) {
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})${" "}| ${entry[1]}\n`;
+                    else throw error;
+                }
             }
             desc += "```";
 
