@@ -155,7 +155,12 @@ client.on("messageCreate", message => {
                     masterJson["Scoreboard"][key] += pointsScored;
                     masterJson["CareerScoreboard"][key] += pointsScored;
                     let user = client.users.cache.get(key);
-                    desc += `${user.tag}${" ".repeat(34-user.tag.length)}| ${diff} (${pointsScored})\n`;    
+                    try {
+                        desc += `${user.tag}${" ".repeat(34-user.tag.length)}| ${diff} (${pointsScored})\n`;
+                    } catch (error) {
+                        if (error instanceof TypeError) desc += `USER NOT FOUND (${key})${" ".repeat(34)}| ${diff} (${pointsScored})\n`;
+                        else throw error;
+                    }
                 }
                 desc += "```";
                 masterJson["CurrentGuesses"] = {};
