@@ -123,7 +123,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})| ${currentGuesses[entry]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${entry})| ${currentGuesses[entry]}\n`;
                     else throw error;
                 }
             }
@@ -201,7 +201,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})| ${entry[1]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${entry[0]})| ${entry[1]}\n`;
                     else throw error;
                 }
             }
@@ -232,7 +232,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (${key})${" "}| ${entry[1]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (${entry[0]})${" "}| ${entry[1]}\n`;
                     else throw error;
                 }
             }
