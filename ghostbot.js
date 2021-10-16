@@ -123,7 +123,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry})   | ${currentGuesses[entry]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry})    | ${currentGuesses[entry]}\n`;
                     else throw error;
                 }
             }
@@ -163,7 +163,7 @@ client.on("messageCreate", message => {
                     try {
                         desc += `${user.tag}${" ".repeat(34-user.tag.length)}| ${diff} (${pointsScored})\n`;
                     } catch (error) {
-                        if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${key})   | ${diff} (${pointsScored})\n`;
+                        if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${key})    | ${diff} (${pointsScored})\n`;
                         else throw error;
                     }
                 }
@@ -201,7 +201,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry[0]})   | ${entry[1]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry[0]})    | ${entry[1]}\n`;
                     else throw error;
                 }
             }
@@ -232,7 +232,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${entry[1]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry[0]})${" "}   | ${entry[1]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry[0]})${" "}    | ${entry[1]}\n`;
                     else throw error;
                 }
             }
