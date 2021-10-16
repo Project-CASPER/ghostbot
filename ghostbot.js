@@ -68,7 +68,8 @@ client.on("messageCreate", message => {
         case "abandon":
         case "abandonab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
-            if (message.member.roles.cache.has(captainRole.id)) {
+            let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole)) {
                 let masterJson = readMasterJson();
                 masterJson["CurrentGuesses"] = {};
                 fs.writeFileSync("ghostbot.json", JSON.stringify(masterJson, null, 4));
@@ -81,7 +82,8 @@ client.on("messageCreate", message => {
         }
         case "newab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
-            if (message.member.roles.cache.has(captainRole.id)) {
+            let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole)) {
                 let currentGuesses = readMasterJson()["CurrentGuesses"];
                 if (Object.keys(currentGuesses).length != 0) {
                     message.reply("An at bat is already taking place! Use `.currentab` to view the current at-bat and `.endab (number)` or `.abandonab` to end it.");
@@ -131,7 +133,8 @@ client.on("messageCreate", message => {
         }
         case "endab": {
             let captainRole = message.guild.roles.cache.find(role => role.name === "Captains");
-            if (!message.member.roles.cache.has(captainRole.id)) {
+            let milrCaptainRole = message.guild.roles.cache.find(role => role.name === "MiLR Captains");
+            if (message.member.roles.cache.has(captainRole.id) || message.member.roles.cache.has(milrCaptainRole)) {
                 message.reply("Sorry friend! You do not have the Captains role and cannot end the at-bat.");
                 break;
             }
