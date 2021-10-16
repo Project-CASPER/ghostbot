@@ -123,7 +123,7 @@ client.on("messageCreate", message => {
                 try {
                     desc += `${user.tag}${" ".repeat(44-user.tag.length)}| ${currentGuesses[entry]}\n`;
                 } catch (error) {
-                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry})    | ${currentGuesses[entry]}\n`;
+                    if (error instanceof TypeError) desc += `USER NOT FOUND (ID: ${entry})     | ${currentGuesses[entry]}\n`;
                     else throw error;
                 }
             }
